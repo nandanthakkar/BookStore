@@ -1,0 +1,6 @@
+#surefire_0
+#Fri Jun 15 11:02:04 EDT 2018
+user.dir=C\:\\Users\\nthakkar\\Downloads\\java-ee-getting-started\\06-testing-the-java-ee-application\\testing-the-java-ee-application-exercise-files\\demos\\bookstore-back
+arquillian.launch=arquillian-wildfly-remote
+localRepository=C\:\\Users\\nthakkar\\.m2\\repository
+basedir=C\:\\Users\\nthakkar\\Downloads\\java-ee-getting-started\\06-testing-the-java-ee-application\\testing-the-java-ee-application-exercise-files\\demos\\bookstore-back
