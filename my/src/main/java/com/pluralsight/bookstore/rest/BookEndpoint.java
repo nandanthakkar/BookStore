@@ -20,7 +20,13 @@ import javax.ws.rs.core.UriInfo;
 import com.pluralsight.bookstore.model.Book;
 import com.pluralsight.bookstore.repository.BookRepository;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @Path("/books")
+@Api("Book")
 public class BookEndpoint {
 
 	@Inject
@@ -34,6 +40,13 @@ public class BookEndpoint {
 	@GET
 	@Path("/{id : \\d+}")
 	@Produces(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "return a book given an identifier", response = Book.class)
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "Book Found"),
+		@ApiResponse(code = 404, message= "Book Not Found"),
+		@ApiResponse(code = 400, message= "Invalid input. ID cannot be lower than 1")
+		
+	})
 	public Response getBook(@PathParam("id") @Min(1) Long id) {
 		Book book = bookRepository.find(id);
 		if( book == null) return Response.status(Response.Status.NOT_FOUND).build();
@@ -46,6 +59,11 @@ public class BookEndpoint {
 	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "Return all the books")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "Found Books"),
+		@ApiResponse(code = 204, message = "No Books found")
+	})
 	public Response getBooks() {
 		List<Book> books = bookRepository.findAll();
 		//System.out.println(books.toString());
@@ -60,6 +78,11 @@ public class BookEndpoint {
 	 */
 	@GET
 	@Path("/count")
+	@ApiOperation(value = "Return number of books", response = Long.class)
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "Found number of Books"),
+		@ApiResponse(code = 204, message = "No Books in the database")
+	})
 	public Response countBooks() {
 		Long noOfBooks = bookRepository.countAll();
 		if(noOfBooks == 0) return Response.noContent().build();
@@ -81,6 +104,11 @@ public class BookEndpoint {
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "Create book given a JSON represenation", response = Book.class)
+	@ApiResponses({
+		@ApiResponse(code = 201, message = "Created book"),
+		@ApiResponse(code = 415, message = "Format Not JSON")
+	})
 	public Response createBook(Book book, @Context UriInfo uriInfo) {
 		book =  bookRepository.create(book);
 		URI createdURI = uriInfo.getBaseUriBuilder().path(book.getId().toString()).build();
@@ -93,6 +121,12 @@ public class BookEndpoint {
 	 */
 	@DELETE
 	@Path("/{id : \\d+}")
+	@ApiOperation(value = "Delete book given its ID", response = Book.class)
+	@ApiResponses({
+		@ApiResponse(code = 204, message = "Book has been deleted"),
+		@ApiResponse(code = 400, message = "Invalid input. ID cannot be lower than 1"),
+		@ApiResponse(code = 500, message = "Book Not Found")
+	})
 	public Response deleteBook(@PathParam("id") @Min(1) Long id) {
 		bookRepository.delete(id);
 		return Response.noContent().build();
