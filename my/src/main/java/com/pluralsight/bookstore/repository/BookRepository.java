@@ -43,6 +43,7 @@ public class BookRepository {
 
     public List<Book> findAll() {
         TypedQuery<Book> query = em.createQuery("SELECT b FROM Book b ORDER BY b.title DESC", Book.class);
+
         return query.getResultList();
     }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.pluralsight.bookstore.repository.BookRepositoryTest" time="2.206" tests="1" errors="1" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.pluralsight.bookstore.rest.BookEndpointTest" time="40.665" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files (x86)\Java\jdk1.8.0_171\jre\bin"/>
@@ -62,18 +62,6 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
   </properties>
-  <testcase name="com.pluralsight.bookstore.repository.BookRepositoryTest" classname="com.pluralsight.bookstore.repository.BookRepositoryTest" time="2.202">
-    <error message="Cannot deploy: test.war" type="org.jboss.arquillian.container.spi.client.container.DeploymentException">org.jboss.arquillian.container.spi.client.container.DeploymentException: Cannot deploy: test.war
-Caused by: java.lang.Exception: "WFLYCTL0212: Duplicate resource [(\"deployment\" => \"test.war\")]"
-</error>
-    <system-err><![CDATA[Jun 19, 2018 10:39:28 AM org.jboss.arquillian.core.impl.ObserverImpl resolveArguments
-WARNING: Argument 2 for ArquillianServiceDeployer.doServiceDeploy is null. It won't be invoked.
-Jun 19, 2018 10:39:28 AM org.xnio.Xnio <clinit>
-INFO: XNIO version 3.3.4.Final
-Jun 19, 2018 10:39:28 AM org.xnio.nio.NioXnio <clinit>
-INFO: XNIO NIO Implementation Version 3.3.4.Final
-Jun 19, 2018 10:39:28 AM org.jboss.remoting3.EndpointImpl <clinit>
-INFO: JBoss Remoting version 4.0.18.Final
-]]></system-err>
-  </testcase>
+  <testcase name="shouldGetNoBook" classname="com.pluralsight.bookstore.rest.BookEndpointTest" time="38.748"/>
+  <testcase name="createBook" classname="com.pluralsight.bookstore.rest.BookEndpointTest" time="0.733"/>
 </testsuite>
