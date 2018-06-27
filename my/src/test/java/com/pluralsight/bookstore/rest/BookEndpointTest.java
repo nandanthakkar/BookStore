@@ -30,7 +30,14 @@ import com.pluralsight.bookstore.repository.BookRepository;
 import com.pluralsight.bookstore.util.IsbnGenerator;
 import com.pluralsight.bookstore.util.NumberGenerator;
 import com.pluralsight.bookstore.util.TextUtil;
-import org.jboss.arquillian.extension.rest.client.ArquillianResteasyResource;
+
+//import com.pluralsight.bookstore.model.Book;
+//import com.pluralsight.bookstore.model.Language;
+//import com.pluralsight.bookstore.repository.BookRepository;
+//import com.pluralsight.bookstore.util.IsbnGenerator;
+//import com.pluralsight.bookstore.util.NumberGenerator;
+//import com.pluralsight.bookstore.util.TextUtil;
+//import org.jboss.arquillian.extension.rest.client.ArquillianResteasyResource;
 
 @RunWith(Arquillian.class)
 @RunAsClient
