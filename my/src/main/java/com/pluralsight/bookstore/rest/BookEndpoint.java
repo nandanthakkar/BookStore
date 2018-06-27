@@ -17,11 +17,16 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+/*import org.jboss.as.domain.http.server.cors.CorsHeaders;
+import org.jboss.as.domain.http.server.cors.CorsHttpHandler;
+import org.jboss.as.domain.http.server.cors.CorsUtil;*/
+
 import com.pluralsight.bookstore.model.Book;
 import com.pluralsight.bookstore.repository.BookRepository;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
@@ -51,6 +56,13 @@ public class BookEndpoint {
 		Book book = bookRepository.find(id);
 		if( book == null) return Response.status(Response.Status.NOT_FOUND).build();
 		return Response.ok(book).build();
+		/*
+		 * .header("Access-Control-Expose-Headers", "Access-Control-*")
+				.header("Access-Control-Allow-Headers", "Access-Control-*, Origin, X-Requested-With, Content-Type, Accept")
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+				.header("Access-Control-Allow-Origin", "*")
+				.header("Allow", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+		 */
 	}
 
 	/**
@@ -87,6 +99,7 @@ public class BookEndpoint {
 		Long noOfBooks = bookRepository.countAll();
 		if(noOfBooks == 0) return Response.noContent().build();
 		return Response.ok(noOfBooks).build();
+		
 	}
 
 	/**
@@ -109,7 +122,7 @@ public class BookEndpoint {
 		@ApiResponse(code = 201, message = "Created book"),
 		@ApiResponse(code = 415, message = "Format Not JSON")
 	})
-	public Response createBook(Book book, @Context UriInfo uriInfo) {
+	public Response createBook(@ApiParam(value = "Book to be created", required = true) Book book, @Context UriInfo uriInfo) {
 		book =  bookRepository.create(book);
 		URI createdURI = uriInfo.getBaseUriBuilder().path(book.getId().toString()).build();
 		return Response.created(createdURI).build();
